@@ -6,7 +6,7 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:58:51 by lboulang          #+#    #+#             */
-/*   Updated: 2023/05/14 16:10:26 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/23 19:49:33 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,22 @@ char	**ft_get_env_path(char **env)
 
 void	ft_wrong_access(char *cmd_path, char *cmd_name)
 {
+	if (cmd_path[ft_strlen(cmd_path)-1] == '/')
+	{
+		ft_printf("pipex: %s: not a directory\n");
+		// return (free(cmd_path));
+	}
 	if (access(cmd_path, F_OK))
 	{
-		ft_printf("command not found : '%s'", cmd_name);
-		return (free(cmd_path));
+		ft_printf("pipex: command not found : '%s'\n", cmd_name);
+		// return (free(cmd_path));
 	}
 	if (access(cmd_path, X_OK))
 	{
-		ft_printf("%s: permission denied", cmd_path);
-		return (free(cmd_path));
+		ft_printf("pipex: %s: permission denied\n", cmd_path);
+		// return (free(cmd_path));
 	}
+	free(cmd_path);
 }
 
 char	*ft_check_acces(char **env_path, char *cmd_name)
@@ -62,20 +68,31 @@ char	*ft_check_acces(char **env_path, char *cmd_name)
 	char	*tmp_path;
 	char	*cmd_path;
 	int		i;
-
+	int check = 0;
+	
 	i = -1;
 	while (env_path[++i])
 	{
-		tmp_path = ft_strjoin(env_path[i], "/");
-		if (!tmp_path)
-			return (NULL);
-		cmd_path = ft_strjoin(tmp_path, cmd_name);
-		if (!cmd_path)
-			return (NULL);
-		free(tmp_path);
+		if (!ft_strncmp(cmd_name, "/", 1))
+		{
+			check = 1;
+			cmd_path = ft_strdup(cmd_name);
+			if (!cmd_path)
+				return (NULL);
+		}
+		else
+		{
+			tmp_path = ft_strjoin(env_path[i], "/");
+			if (!tmp_path)
+				return (NULL);
+			cmd_path = ft_strjoin(tmp_path, cmd_name);
+			if (!cmd_path)
+				return (free(tmp_path), NULL);
+			free(tmp_path);	
+		}
 		if (!access(cmd_path, F_OK | X_OK))
-			return (cmd_path);
-		if (env_path[i + 1])
+				return (cmd_path);
+		if (env_path[i + 1] && check != 1)
 			free(cmd_path);
 		else
 			return (ft_wrong_access(cmd_path, cmd_name), NULL);

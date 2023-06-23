@@ -6,7 +6,7 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 21:03:21 by lboulang          #+#    #+#             */
-/*   Updated: 2023/06/23 09:58:25 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/23 19:54:51 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,18 @@ Last command with invalid flags
 Last command error -> outfile créé et vide
 outfile already exist `touch outfile && < Makefile cat | wc -l >` (fonctionnement habituel)
 */
+
+/*
+en cas derror sur la derniere command set status code a + de 128 jcrois check les repo des autres.
+
+*/
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	pipex;
-
+	if (ac == 2)
+		return (0);
 	if (ac < 5)
-		return (ft_printf("Pipex syntax error\n"));
-		// return (ft_printf("syntax error near unexpected token: %s", av[ac -1]));
+		return (ft_printf("syntax error near unexpected token: %s", av[ac -1]));
 	pipex.env_path = ft_get_env_path(env);
 	ft_exec(&pipex, ac, av, env);
 	ft_free_tab((void **)pipex.env_path);
