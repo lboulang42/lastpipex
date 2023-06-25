@@ -6,7 +6,7 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 21:03:21 by lboulang          #+#    #+#             */
-/*   Updated: 2023/06/25 16:56:51 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/25 19:41:01 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,14 @@ Devrait être identique à < infile ls -l | wc -l > outfile
 './pipex infile "grep a1" "wc -w" outfile'
 Devrait être identique à < infile grep a1 | wc -w > outfile
 */
-
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	pipex;
 
 	if (ac < 5)
-		return (ft_printf("%s %s", ERR_SYNTX, av[ac - 1]), 1);
+		return (ft_printf("%s %s\n", ERR_SYNTX, av[ac - 1]), 1);
 	if (ac > 5)
-		return (ft_printf("Pipex : Mandatory only support 2 commands"), 1);
+		return (ft_printf("Pipex : Mandatory only support 2 commands\n"), 1);
 	pipex.env_path = ft_get_env_path(env);
 	ft_exec(&pipex, ac, av, env);
 	ft_free_tab((void **)pipex.env_path);

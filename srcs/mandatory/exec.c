@@ -6,7 +6,7 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:59:44 by lboulang          #+#    #+#             */
-/*   Updated: 2023/06/25 16:52:42 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/25 19:40:41 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	ft_child2(t_pipex *pipex, char **env, char *out_path)
 
 /*
 Open infile O_RDONLY (check if file is accessible)
-
 */
 void	ft_exec(t_pipex *pipex, int ac, char **av, char **env)
 {
@@ -80,7 +79,7 @@ void	ft_exec(t_pipex *pipex, int ac, char **av, char **env)
 	i = 1;
 	pipex->infile_fd = open(av[1], O_RDONLY);
 	if (pipex->infile_fd < 0)
-		ft_printf("Pipex: %s %s\n", av[1], ERR_NOSUCHF);
+		ft_printf("Pipex: %s: %s\n", av[1], ERR_NOSUCHF);
 	while (av[++i + 1])
 	{
 		ft_get_exec_assets(pipex, av[i]);
