@@ -6,7 +6,7 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 20:10:01 by lboulang          #+#    #+#             */
-/*   Updated: 2023/04/27 20:37:13 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/24 15:04:05 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*Write C On Standard Output, Return 1*/
 int	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	write(2, &c, 1);
 	return (1);
 }
 
@@ -60,7 +60,7 @@ int	ft_putstr(char *s)
 	i = 0;
 	while (s[i])
 	{
-		write(1, &s[i], 1);
+		write(2, &s[i], 1);
 		i++;
 	}
 	return (i);

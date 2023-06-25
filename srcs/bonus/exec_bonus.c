@@ -6,7 +6,7 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:59:44 by lboulang          #+#    #+#             */
-/*   Updated: 2023/05/14 16:55:48 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/24 13:43:11 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,11 @@ exec sur here_doc
 */
 int	ft_check_heredoc(t_pipex *pipex, char *arg, char *limiter)
 {
+	(void)pipex;
+	(void)arg;
+	(void)limiter;
 	if (!ft_strncmp("here_doc", arg, ft_strlen(arg)))
 	{
-		
-		
 		return (1);
 	}
 	return (0);

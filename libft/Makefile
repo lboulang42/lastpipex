@@ -6,7 +6,7 @@
 #    By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 17:31:43 by lboulang          #+#    #+#              #
-#    Updated: 2023/05/12 16:30:50 by lboulang         ###   ########.fr        #
+#    Updated: 2023/06/24 14:01:45 by lboulang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,19 +33,25 @@ ft_free_tab.c\
 
 OBJ = $(SRCS:.c=.o)
 
-CC = gcc
+CC = @ gcc
 CFLAGS = -g3 -Wall -Werror -Wextra -I.
 NAME = libft.a
 
 $(NAME):$(OBJ)
-	ar rcs $(NAME) $(OBJ)
+	@echo "\n\t\t\t | 📚  MAKING LIBFT 🔄 📚  |\t\t"
+	@ar rcs $(NAME) $(OBJ)
+	@echo "\n\t\t\t | 📚  LIBFT MAKED ✅ 📚  |\n"
 
 all: $(NAME)
 
 clean : 
-	rm -f $(OBJ)
+	@echo "\n\t\t\t | 📚  CLEANING LIBFT 🚮 📚  |\t\t"
+	@rm -f $(OBJ)
+	@echo "\n\t\t\t | 📚  LIBFT CLEANED 🚯 📚  |\n"
 
 fclean : clean
-	rm -f $(NAME)
+	@echo "\n\t\t\t | 📚  FCLEANING LIBFT 🚮 📚  |\t\t"
+	@rm -f $(NAME)
+	@echo "\n\t\t\t | 📚  LIBFT FCLEANED 🚯 📚  |\n"
 
-re : fclean $(NAME)
+re : @fclean $(NAME)
