@@ -6,7 +6,7 @@
 #    By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 17:31:43 by lboulang          #+#    #+#              #
-#    Updated: 2023/06/24 14:01:45 by lboulang         ###   ########.fr        #
+#    Updated: 2023/06/25 20:31:23 by lboulang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,17 @@ CFLAGS = -g3 -Wall -Werror -Wextra -I.
 NAME = libft.a
 
 $(NAME):$(OBJ)
-	@echo "\n\t\t\t | 📚  MAKING LIBFT 🔄 📚  |\t\t"
+
+	@echo "🟦📘🟦📘🟦📘🟦📘🟦📘🟦📘🟦📘| 📚 MAKING LIBFT 📚 |🟦📘🟦📘🟦📘🟦📘🟦📘🟦📘🟦📘"
+	@echo -n "...................."
+	@sleep 0.2
+	@echo -n "...................."
+	@sleep 0.2
+	@echo -n "...................."
+	@sleep 0.2
+	@echo -n "...................."
 	@ar rcs $(NAME) $(OBJ)
-	@echo "\n\t\t\t | 📚  LIBFT MAKED ✅ 📚  |\n"
+	@echo "\n🟩✅🟩✅🟩✅🟩✅🟩✅🟩✅🟩✅ | 📚 LIBFT MAKED 📚 |🟩✅🟩✅🟩✅🟩✅🟩✅🟩✅🟩✅\n"
 
 all: $(NAME)
 
