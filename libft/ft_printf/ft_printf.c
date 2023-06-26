@@ -6,7 +6,7 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:17:41 by lboulang          #+#    #+#             */
-/*   Updated: 2023/04/27 20:38:40 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:25:17 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ int	prntf_parse(va_list va_ptr, const char flag, int tmp, int counter)
 	if (flag == 'u')
 		counter += prntf_nbr(va_arg(va_ptr, unsigned int), "0123456789", 0);
 	if (flag == 'x')
-		counter += prntf_nbr(va_arg(va_ptr, unsigned int), "0123456789abcdef", 0);
+		counter += prntf_nbr(va_arg(va_ptr, unsigned int), "0123456789abcdef",
+				0);
 	if (flag == 'X')
-		counter += prntf_nbr(va_arg(va_ptr, unsigned int), "0123456789ABCDEF", 0);
+		counter += prntf_nbr(va_arg(va_ptr, unsigned int), "0123456789ABCDEF",
+				0);
 	if (flag == '%')
 		counter += ft_putchar('%');
 	return (counter);
@@ -56,7 +58,7 @@ int	ft_printf(const char *arg0, ...)
 	{
 		if (arg0[i] == '%' && arg0[i + 1])
 		{
-			counter += prntf_parse(va_ptr, arg0[i +1], tmp, 0);
+			counter += prntf_parse(va_ptr, arg0[i + 1], tmp, 0);
 			i++;
 		}
 		else

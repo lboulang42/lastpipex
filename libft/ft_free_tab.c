@@ -6,18 +6,18 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:29:27 by lboulang          #+#    #+#             */
-/*   Updated: 2023/05/12 16:30:16 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:24:58 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_free_tab(void **tab)
+void	ft_free_tab(void **tab)
 {
-    int i;
+	int	i;
 
-    i = -1;
-    while (tab[++i])
-        free(tab[i]);
-    free(tab);
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
 }

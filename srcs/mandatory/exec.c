@@ -6,18 +6,16 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:59:44 by lboulang          #+#    #+#             */
-/*   Updated: 2023/06/25 19:40:41 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:23:55 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_child1(t_pipex *pipex, char **env)
+void	ft_child1(t_pipex *pipex, char **env, int index)
 {
-	int	wstatus;
-
-	pipex->pid1 = fork();
-	if (pipex->pid1 == 0)
+	pipex->pid[index] = fork();
+	if (pipex->pid[index] == 0)
 	{
 		if (pipex->infile_fd > -1)
 		{
@@ -36,18 +34,13 @@ void	ft_child1(t_pipex *pipex, char **env)
 	ft_close_inout(pipex, 0);
 	pipex->infile_fd = pipex->link_fd[0];
 	ft_close_link_fd(pipex, 1);
-	waitpid(pipex->pid1, &wstatus, 0);
-	if (WIFEXITED(wstatus))
-		pipex->exit_code = WEXITSTATUS(wstatus);
 }
 
-void	ft_child2(t_pipex *pipex, char **env, char *out_path)
+void	ft_child2(t_pipex *pipex, char **env, char *out_path, int index)
 {
-	int	wstatus;
-
 	pipex->outfile_fd = open(out_path, O_RDWR | O_CREAT | O_TRUNC, 0666);
-	pipex->pid2 = fork();
-	if (pipex->pid2 == 0)
+	pipex->pid[index] = fork();
+	if (pipex->pid[index] == 0)
 	{
 		if (pipex->outfile_fd == -1)
 		{
@@ -64,9 +57,20 @@ void	ft_child2(t_pipex *pipex, char **env, char *out_path)
 		ft_free_pipex(pipex);
 		exit(127);
 	}
-	waitpid(pipex->pid2, &wstatus, 0);
-	if (WIFEXITED(wstatus))
-		pipex->exit_code = WEXITSTATUS(wstatus);
+}
+
+void	ft_wait_pid(t_pipex *pipex, int limit)
+{
+	int	i;
+	int	wstatus;
+
+	i = -1;
+	while (++i < limit)
+	{
+		waitpid(pipex->pid[i], &wstatus, 0);
+		if (WIFEXITED(wstatus))
+			pipex->exit_code = WEXITSTATUS(wstatus);
+	}
 }
 
 /*
@@ -85,12 +89,13 @@ void	ft_exec(t_pipex *pipex, int ac, char **av, char **env)
 		ft_get_exec_assets(pipex, av[i]);
 		pipe(pipex->link_fd);
 		if (i < ac - 2)
-			ft_child1(pipex, env);
+			ft_child1(pipex, env, i - 2);
 		else
-			ft_child2(pipex, env, av[i + 1]);
+			ft_child2(pipex, env, av[i + 1], i - 2);
 		free(pipex->cmd_path);
 		ft_free_tab((void **)pipex->cmd_args);
 	}
+	ft_wait_pid(pipex, i - 2);
 	ft_close_inout(pipex, 2);
 	ft_close_link_fd(pipex, 2);
 }
