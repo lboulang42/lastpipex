@@ -6,7 +6,7 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:37:15 by lboulang          #+#    #+#             */
-/*   Updated: 2023/06/26 18:41:13 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:14:12 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_pipex
 	int		link_fd[2];
 	int		exit_code;
 	int		*pid;
+	int		is_heredoc;
 }			t_pipex;
 
 /*FUNCTIONS*/

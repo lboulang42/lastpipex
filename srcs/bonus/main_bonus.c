@@ -6,7 +6,7 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 21:03:21 by lboulang          #+#    #+#             */
-/*   Updated: 2023/06/26 18:57:31 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:14:28 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int ac, char **av, char **env)
 	if (!pipex.pid)
 		return (1);
 	pipex.exit_code = 127;
+	pipex.is_heredoc = 0;
 	pipex.env_path = ft_get_env_path(env);
 	ft_exec(&pipex, ac, av, env);
 	ft_free_tab((void **)pipex.env_path);
