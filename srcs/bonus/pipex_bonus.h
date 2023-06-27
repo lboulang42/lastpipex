@@ -6,7 +6,7 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:37:15 by lboulang          #+#    #+#             */
-/*   Updated: 2023/06/27 14:14:12 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:34:56 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,28 @@ typedef struct s_pipex
 }			t_pipex;
 
 /*FUNCTIONS*/
-/*main.c*/
+/*main_bonus.c*/
 int			main(int ac, char **av, char **env);
-/*exec.c*/
+/*exec_bonus.c*/
 void		ft_child1(t_pipex *pipex, char **env, int index);
 void		ft_child2(t_pipex *pipex, char **env, char *out_path, int index);
 void		ft_exec(t_pipex *pipex, int ac, char **av, char **env);
-/*clean.c*/
+/*clean_bonus.c*/
 void		ft_free_pipex(t_pipex *pipex);
 void		ft_close_link_fd(t_pipex *pipex, int to_close);
 void		ft_close_inout(t_pipex *pipex, int to_close);
 void		ft_clear_pipex(t_pipex *pipex);
-/*acces.c*/
+/*acces_bonus.c*/
 void		ft_get_exec_assets(t_pipex *pipex, char *command);
 char		*ft_join_path(char *try_path, char *cmd_name);
 char		*ft_check_acces(char **env_path, char *cmd_name);
 void		ft_access_fail(char *cmd_path, char *cmd_name);
 char		**ft_get_env_path(char **env);
+/*gnl_bonus.c*/
+char		*ft_get_file(char *buffer, int fd);
+char		*ft_get_line(char *buffer);
+char		*ft_update_buffer(char *buffer);
+char		*ft_join_free(char *str1, char *str2);
+int			ft_is_same_line(char *line, char *limiter);
 
 #endif

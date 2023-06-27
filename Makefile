@@ -6,7 +6,7 @@
 #    By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 17:31:43 by lboulang          #+#    #+#              #
-#    Updated: 2023/06/26 16:51:25 by lboulang         ###   ########.fr        #
+#    Updated: 2023/06/27 14:33:20 by lboulang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS =			./srcs/mandatory/main.c\
 SRCS_BONUS =	./srcs/bonus/main_bonus.c\
 				./srcs/bonus/acces_bonus.c\
 				./srcs/bonus/exec_bonus.c\
-				./srcs/bonus/clean_bonus.c
+				./srcs/bonus/clean_bonus.c\
+				./srcs/bonus/gnl_bonus.c
 #OBJECTS
 OBJS = ${SRCS:.c=.o }
 OBJS_BONUS = ${SRCS_BONUS:.c=.o }
