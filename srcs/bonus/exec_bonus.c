@@ -6,7 +6,7 @@
 /*   By: lboulang <lboulang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:59:44 by lboulang          #+#    #+#             */
-/*   Updated: 2023/06/27 14:47:41 by lboulang         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:49:24 by lboulang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ int	ft_check_here_doc(t_pipex *pipex, char **av)
 	int			len;
 
 	len = ft_strlen(av[1]);
-	if (ft_strncmp(av[1], "here_doc", len) && len == 8)
+	if (ft_strncmp(av[1], "here_doc", len) || len != 8)
 		return (0);
+	ft_printf("here_doc detected");
 	pipe(pipex->link_fd);
 	while (1)
 	{
